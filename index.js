@@ -113,18 +113,24 @@ Car.prototype.fill = function (gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+  // this is what the baby is inheriting. this, name and age?
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+// now we inherit methods from person
 
-
+Baby.prototype = Object.create(Person.prototype)
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Implicit Binding = It is implied that when a fx or objet is called by a dot, the object to the left of the dot gets 'this'
+  2. New keyword or New Object = this is a fx whenever a constructor fx is used. 'This' is refered to the specific instance of the object that is created and returned by the constructor fx
+  3. explicit Binding = if a fx is invoked with call/apply/bind this is refered to as explicit because we are explicitly telling the program what 'this' is
+  4. Global/Window = This is the default rule if none of the above apply. Returns undefined if in strict mode. 
 */
 
 
